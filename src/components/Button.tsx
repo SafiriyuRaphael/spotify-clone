@@ -1,8 +1,14 @@
-import React from "react";
+type Props = {
+  label: string;
+  onClick?: () => void;
+};
 
-const Button = ({ label }) => {
+const Button = ({ label, onClick }: Props) => {
   return (
-    <button className="bg-green-500 rounded-full w-full py-2.5 font-bold text-black">
+    <button
+      className="bg-green-500 rounded-full w-full py-2.5 font-bold text-black"
+      onClick={onClick}
+    >
       {label}
     </button>
   );
