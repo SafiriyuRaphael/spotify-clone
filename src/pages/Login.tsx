@@ -1,12 +1,13 @@
 import React from "react";
 import Button from "../components/Button";
+import AuthLayout from "../components/AuthLayout";
 
 const Login = () => {
   return (
     <div className="flex flex-col gap-5 items-center">
       <h1 className="text-5xl font-bold">Welcome back</h1>
       <label htmlFor="mail">Email</label>
-      <input type="text" id="mail" placeholder="name@domain.com" className="border py-3  w-80  rounded-bl-xs"/>
+      <input type="text" id="mail" placeholder="name@domain.com" />
       <Button label="Continue" />
     </div>
   );
