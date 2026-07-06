@@ -11,7 +11,7 @@ const AuthLayout = () => {
   ];
   return (
     <div className="bg-black text-white flex flex-col items-center justify-center gap-5 py-10">
-      <FaSpotify size={50} color="green" />
+      <FaSpotify size={50} color="green" /> 
       <Outlet />
       <p>or</p>
       <div className="flex flex-col gap-2.5">
