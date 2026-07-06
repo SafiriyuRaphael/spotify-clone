@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router"
-import Login from "./pages/Login"
-import SignUp from "./pages/SignUp"
+import Login from "./pages/auth/log-in"
+import SignUp from "./pages/auth/sign-up"
 
 export const router = createBrowserRouter([
     {
