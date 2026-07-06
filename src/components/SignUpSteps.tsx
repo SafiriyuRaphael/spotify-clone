@@ -41,7 +41,7 @@ const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
             <h4 className="font-bold">{steps.label}</h4>
           </div>
         </div>
-        {children}
+        <div className="pl-16 ">{children}</div>
 
         <Button
           label={steps.step === 3 ? "Sign Up" : "Next"}

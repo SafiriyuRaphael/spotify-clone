@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import AuthLayout from "../components/AuthLayout";
 import SignUpSteps from "../components/SignUpSteps";
-import {FaEye } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
 const SignUp = () => {
   const [step, setStep] = useState<number>(0);
@@ -40,21 +40,30 @@ const SignUp = () => {
   if (step === 1) {
     return (
       <SignUpSteps steps={steps[step]} setStep={setStep}>
-        <div className="px-16">
-          <label htmlFor="password" className="flex flex-col py-2 font-bold " >Password</label>
+        <div className="space-y-2">
+          <label htmlFor="password" className="flex flex-col font-bold ">
+            Password
+          </label>
 
           <div className="border-2 flex justify-between w-4xs h-10 ">
-          <input type="password"className="active:border-0" /> <FaEye className="pr-1.5 size-8" />
+            <input type="password" className="active:border-0" />{" "}
+            <FaEye className="pr-1.5 size-8" />
           </div>
           <p className="font-bold">Your password must contain at least </p>
           <input type="radio" />
-          <label htmlFor="text" className="px-1.5">1 letter</label>
+          <label htmlFor="text" className="pl-1.5 text-sm">
+            1 letter
+          </label>
           <br />
           <input type="radio" />
-          <label htmlFor="text" className="px-1.5">1 number or special character example:#?!$</label>
+          <label htmlFor="text" className="pl-1.5 text-sm">
+            1 number or special character example:#?!$
+          </label>
           <br />
           <input type="radio" />
-          <label htmlFor="text" className="px-1.5"> 10 characters</label>
+          <label htmlFor="text" className="pl-1.5 text-sm">
+            10 characters
+          </label>
         </div>
       </SignUpSteps>
     );
@@ -69,64 +78,45 @@ const SignUp = () => {
 
   return (
     <SignUpSteps steps={steps[step]} setStep={setStep}>
-      <div className="flex flex-col gap-5" >
+      <div className="flex flex-col gap-5">
         <div>
+          <label className="flex gap-3  cursor-pointer">
+            <input type="checkbox" className="w-4 h-5 accent-green-500" />
+            <p>I would prefer not to receive messages from spotify</p>
+          </label>
+        </div>
+        <div className="">
+          <label className="flex gap-3  cursor-pointer ">
+            <input type="checkbox" className="w-7 h-5 " />
+            <p>
+              Share my registration data with Spotify's content providers for
+              marketing purposes.
+            </p>
+          </label>
+        </div>
 
-        <label className="flex gap-3  cursor-pointer">
-          <input
-            type="checkbox"
-            className="w-4 h-5 accent-green-500"
-          />
+        <div className="mt-8  text-sm leading-7">
           <p>
-            I would prefer not to receive messages
-            from spotify
+            <b>spotify is a personalised service.</b>
           </p>
-        </label>
 
-       
-
-      </div>
-      <div className="">
-         <label className="flex gap-3  cursor-pointer ">
-          <input
-            type="checkbox"
-            className="w-7 h-5 "
-          />
-          <p>
-             Share my registration data with Spotify's content providers for marketing purposes.
-          
+          <p className="mt-3">
+            <b> By clicking Sign Up, you agree to spotify </b>
+            <div className="text-green-500 cursor-pointer">
+              {" "}
+              <u>Terms & Conditions</u>
+            </div>
           </p>
-        </label>
+
+          <p className="mt-3">
+            <b>By clicking Sign Up, you agree to the</b>
+            <div className="text-green-500 cursor-pointer">
+              {" "}
+              <u> spotify Privacy Policy</u>
+            </div>
+          </p>
+        </div>
       </div>
-
-      <div className="mt-8  text-sm leading-7">
-
-        <p><b>
-          spotify is a personalised service.
-        </b>
-        </p>
-
-        <p className="mt-3">
-         <b> By clicking Sign Up, you agree to spotify </b>
-          <div className="text-green-500 cursor-pointer">
-            {" "} <u>Terms & Conditions</u> 
-          </div>
-        </p>
-
-        <p className="mt-3">
-          <b>By clicking Sign Up, you agree to the</b>
-          <div className="text-green-500 cursor-pointer">
-            {" "} <u> spotify Privacy Policy</u>
-          </div>
-        </p>
-
-      </div>
-
-     
-
-    </div>
-  
-
     </SignUpSteps>
   );
 };
