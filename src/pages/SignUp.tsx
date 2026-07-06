@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import AuthLayout from "../components/AuthLayout";
 import SignUpSteps from "../components/SignUpSteps";
+import {FaEye } from "react-icons/fa";
 
 const SignUp = () => {
   const [step, setStep] = useState<number>(0);
@@ -39,7 +40,22 @@ const SignUp = () => {
   if (step === 1) {
     return (
       <SignUpSteps steps={steps[step]} setStep={setStep}>
-        <h1>passsjdjiewjjsd</h1>
+        <div className="px-16">
+          <label htmlFor="password" className="flex flex-col py-2 font-bold " >Password</label>
+
+          <div className="border-2 flex justify-between w-4xs h-10 ">
+          <input type="password"className="active:border-0" /> <FaEye className="pr-1.5 size-8" />
+          </div>
+          <p className="font-bold">Your password must contain at least </p>
+          <input type="radio" />
+          <label htmlFor="text" className="px-1.5">1 letter</label>
+          <br />
+          <input type="radio" />
+          <label htmlFor="text" className="px-1.5">1 number or special character example:#?!$</label>
+          <br />
+          <input type="radio" />
+          <label htmlFor="text" className="px-1.5"> 10 characters</label>
+        </div>
       </SignUpSteps>
     );
   }
