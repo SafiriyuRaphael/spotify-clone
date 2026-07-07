@@ -5,7 +5,6 @@ import SignUpSteps from "../components/SignUpSteps";
 
 const SignUp = () => {
   const [step, setStep] = useState<number>(0);
-  const [Numbers, setNumber] = useState(1916)
 
   const steps: { step: number; label: string }[] = [
     { step: 0, label: "Email" },
@@ -19,7 +18,7 @@ const SignUp = () => {
       <AuthLayout>
         <div className="flex flex-col gap-5 items-center ">
           <h1 className="text-5xl font-bold text-center">
-            {" "}
+            " "}
             Sign up to <br /> start listening{" "}
           </h1>
           <label htmlFor="mail" className="mr-56 translate-y-3">
