@@ -1,33 +1,25 @@
 import React, { createContext, useState, type Dispatch } from "react";
 
-type RegisterDataType = {
+export type RegisterDataType = {
   password: string;
   fullName: string;
   Dob: string;
-  gender: "male" | "female" | null;
+  gender: "male" | "female" | "prefer_not_to_say";
   marketingMessage: boolean;
   shareData: boolean;
 };
 
+type WrongPassType = {
+  hasLetter: boolean;
+  hasChars: boolean;
+  greaterThan10: boolean;
+};
+
 type AuthContextType = {
-  registerData: {
-    password: string;
-    fullName: string;
-    Dob: string;
-    gender: "male" | "female" | null;
-    marketingMessage: boolean;
-    shareData: boolean;
-  };
-  setRegisterData: Dispatch<
-    React.SetStateAction<{
-      password: string;
-      fullName: string;
-      Dob: string;
-      gender: null;
-      marketingMessage: boolean;
-      shareData: boolean;
-    }>
-  >;
+  registerData: RegisterDataType;
+  wrongPass: WrongPassType;
+  setRegisterData: Dispatch<React.SetStateAction<RegisterDataType>>;
+  setWrongPass: Dispatch<React.SetStateAction<WrongPassType>>;
 };
 
 export const authContext = createContext<AuthContextType>({
@@ -39,7 +31,13 @@ export const authContext = createContext<AuthContextType>({
     marketingMessage: false,
     shareData: false,
   },
+  wrongPass: {
+    hasLetter: false,
+    hasChars: false,
+    greaterThan10: false,
+  },
   setRegisterData: () => {},
+  setWrongPass: () => {},
 });
 
 const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
@@ -51,9 +49,16 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
     marketingMessage: false,
     shareData: false,
   });
+  const [wrongPass, setWrongPass] = useState({
+    hasLetter: false,
+    hasChars: false,
+    greaterThan10: false,
+  });
 
   return (
-    <authContext.Provider value={{ registerData, setRegisterData }}>
+    <authContext.Provider
+      value={{ registerData, setRegisterData, wrongPass, setWrongPass }}
+    >
       {children}
     </authContext.Provider>
   );

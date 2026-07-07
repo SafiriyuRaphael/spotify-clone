@@ -1,38 +1,28 @@
-import { useContext, useState, type ChangeEvent } from "react";
-import { FaEye } from "react-icons/fa";
+import { useContext, useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { authContext } from "../../context";
 
 const Step1 = () => {
-  const { registerData, setRegisterData } = useContext(authContext);
-  const [wrongPass, setWrongPass] = useState({
-    hasLetter: "no",
-    hasChars: "no",
-    greaterThan10: "no",
-  });
-
-  let letters = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-  let specialChars = [",", ".", "@"];
+  const { registerData, setRegisterData, wrongPass, setWrongPass } =
+    useContext(authContext);
+  const [passwordType, setPasswordType] = useState(true);
 
   const authenticatePassword = (pass: string) => {
-    if (pass.length >= 10) {
-      setWrongPass({ ...wrongPass, greaterThan10: "yes" });
-    }
-    if (letters.includes(pass)) {
-      setWrongPass({ ...wrongPass, hasLetter: "yes" });
-    }
-    if (specialChars.includes(pass)) {
-      setWrongPass({ ...wrongPass, hasChars: "yes" });
-    }
+    setWrongPass({
+      greaterThan10: pass.length >= 10,
+      hasChars: /[\d.,@#!?$]/.test(pass),
+      hasLetter: /[A-Za-z]/.test(pass),
+    });
   };
 
   const writePassword = (text: string) => {
-    console.log(text);
+    setRegisterData({ ...registerData, password: text });
 
-    setRegisterData({ password: text });
-    console.log(registerData.password);
+    authenticatePassword(text);
+  };
 
-    authenticatePassword(registerData.password);
-    console.log(wrongPass);
+  const toggleInputType = () => {
+    setPasswordType(!passwordType);
   };
 
   return (
@@ -43,24 +33,45 @@ const Step1 = () => {
 
       <div className="border flex justify-between w-4xs h-10 px-2">
         <input
-          type="password"
-          className=""
-          onChange={(e: ChangeEvent) => writePassword(e.target.value)}
+          type={passwordType ? "password" : "text"}
+          className="outline-0"
+          onChange={(e) => writePassword(e.target.value)}
+          value={registerData.password}
         />
-        <FaEye className="pr-1.5 size-8" />
+        <button className="cursor-pointer" onClick={toggleInputType}>
+          {!passwordType ? (
+            <FaEye className="pr-1.5 size-8" />
+          ) : (
+            <FaEyeSlash className="pr-1.5 size-8" />
+          )}
+        </button>
       </div>
       <p className="font-bold">Your password must contain at least </p>
-      <input type="radio" value={wrongPass.hasLetter} />
+      <input
+        className="accent-green-500"
+        type="radio"
+        checked={wrongPass.hasLetter}
+      />
       <label htmlFor="text" className="pl-1.5 text-sm">
         1 letter
       </label>
       <br />
-      <input type="radio" value={wrongPass.hasChars} />
+      <input
+        className="accent-green-500"
+        type="radio"
+        checked={wrongPass.hasChars}
+        readOnly
+      />
       <label htmlFor="text" className="pl-1.5 text-sm">
         1 number or special character example:#?!$
       </label>
       <br />
-      <input type="radio" value={wrongPass.greaterThan10} />
+      <input
+        className="accent-green-500"
+        type="radio"
+        checked={wrongPass.greaterThan10}
+        readOnly
+      />
       <label htmlFor="text" className="pl-1.5 text-sm">
         10 characters
       </label>

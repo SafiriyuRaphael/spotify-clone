@@ -1,6 +1,8 @@
 import { CgChevronLeft } from "react-icons/cg";
 import Button from "./Button";
 import { FaSpotify } from "react-icons/fa";
+import { useContext } from "react";
+import { authContext } from "../pages/auth/context";
 
 type SignUpStepsProps = {
   children: React.ReactNode;
@@ -9,8 +11,17 @@ type SignUpStepsProps = {
 };
 
 const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
+  const { wrongPass } = useContext(authContext);
+
   const NextStep = () => {
-    if (steps.step < 3) {
+    if (steps.step === 1) {
+      if (Object.values(wrongPass).includes(false)) {
+        return;
+      } else {
+        setStep(2);
+      }
+    }
+    if (steps.step > 1) {
       setStep(steps.step + 1);
     }
   };
@@ -32,7 +43,7 @@ const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
             className={` h-0.5 bg-green-500`}
           ></div>
         </div>
-        <div className="flex gap-5 items-center pl-4">
+        <div className="flex gap-4 items-center ">
           <button onClick={prevStep}>
             <CgChevronLeft size={30} />
           </button>
@@ -41,7 +52,7 @@ const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
             <h4 className="font-bold">{steps.label}</h4>
           </div>
         </div>
-        <div className="pl-16 ">{children}</div>
+        <div className="pl-10 ">{children}</div>
 
         <Button
           label={steps.step === 3 ? "Sign Up" : "Next"}
