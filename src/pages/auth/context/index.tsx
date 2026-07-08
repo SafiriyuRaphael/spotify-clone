@@ -3,7 +3,7 @@ import React, { createContext, useState, type Dispatch } from "react";
 export type RegisterDataType = {
   password: string;
   fullName: string;
-  Dob: string;
+  dob: { day: string; month: string; year: string };
   gender: "male" | "female" | "prefer_not_to_say";
   marketingMessage: boolean;
   shareData: boolean;
@@ -26,7 +26,7 @@ export const authContext = createContext<AuthContextType>({
   registerData: {
     password: "",
     fullName: "",
-    Dob: "",
+    dob: { day: "", month: "", year: "" },
     gender: null,
     marketingMessage: false,
     shareData: false,
@@ -44,7 +44,7 @@ const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [registerData, setRegisterData] = useState<RegisterDataType>({
     password: "",
     fullName: "",
-    Dob: "",
+    dob: { day: "", month: "", year: "" },
     gender: null,
     marketingMessage: false,
     shareData: false,

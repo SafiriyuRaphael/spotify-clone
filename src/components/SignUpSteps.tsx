@@ -11,7 +11,7 @@ type SignUpStepsProps = {
 };
 
 const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
-  const { wrongPass } = useContext(authContext);
+  const { wrongPass, registerData } = useContext(authContext);
 
   const NextStep = () => {
     if (steps.step === 1) {
@@ -21,10 +21,13 @@ const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
         setStep(2);
       }
     }
+
     if (steps.step > 1) {
       setStep(steps.step + 1);
     }
   };
+  if (!registerData.fullName || registerData.gender) {
+  }
   const prevStep = () => {
     setStep(steps.step - 1);
   };

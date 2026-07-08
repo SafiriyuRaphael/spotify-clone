@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { authContext } from "../../context";
 
 const Step2 = () => {
-  const [dob, setDob] = useState({ day: "", month: "", year: "" });
   const { registerData, setRegisterData } = useContext(authContext);
 
   return (
@@ -37,7 +36,6 @@ const Step2 = () => {
               maxLength={31}
               max={31}
               minLength={1}
-              width={2}
               onChange={(e) =>
                 setRegisterData({
                   ...registerData,
