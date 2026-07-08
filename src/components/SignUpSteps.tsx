@@ -21,7 +21,17 @@ const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
         setStep(2);
       }
     }
-
+    if (steps.step === 2) {
+      if (
+        !registerData.fullName ||
+        Object.values(registerData.dob).includes("") ||
+        !registerData.gender
+      ) {
+        return;
+      } else {
+        setStep(3);
+      }
+    }
     if (steps.step > 1) {
       setStep(steps.step + 1);
     }
