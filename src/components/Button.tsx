@@ -1,8 +1,14 @@
+type Props = {
+  label: string;
+  onClick?: () => void;
+};
 
-
-const Button = ({ label }: {label: string}) => {
+const Button = ({ label, onClick }: Props) => {
   return (
-    <button className="bg-green-500 rounded-full w-full py-2.5 font-bold text-black cursor-pointer transition-all duration-200 hover:scale-110">
+    <button
+      className="bg-green-500 rounded-full w-full py-2.5 font-bold text-black"
+      onClick={onClick}
+    >
       {label}
     </button>
   );
