@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Button from "../../../components/Button";
 import AuthLayout from "../../../components/AuthLayout";
 import SignUpSteps from "../../../components/SignUpSteps";
-
+import { authContext } from "../context";
 import Step1 from "./steps/Step1";
 import Step2 from "./steps/Step2";
 import Step3 from "./steps/Step3";
@@ -10,6 +10,7 @@ import AuthContextProvider from "../context";
 
 const SignUp = () => {
   const [step, setStep] = useState<number>(0);
+  const { registerData, setRegisterData } = useContext(authContext);
 
   const steps: { step: number; label: string }[] = [
     { step: 0, label: "Email" },
@@ -17,7 +18,13 @@ const SignUp = () => {
     { step: 2, label: "Tell us about yourself" },
     { step: 3, label: "Terms and Conditions" },
   ];
-
+  const getEmail = () => {
+    if (!registerData.email) {
+      return;
+    } else {
+      setStep(1);
+    }
+  };
   return (
     <AuthContextProvider>
       {step === 0 && (
@@ -35,8 +42,11 @@ const SignUp = () => {
               id="mail"
               placeholder="name@domain.com"
               className="border py-3 w-80 rounded-bl-xs px-2"
+              onChange={(e) =>
+                setRegisterData({ ...registerData, email: e.target.value })
+              }
             />
-            <Button label="Next" onClick={() => setStep(1)} />
+            <Button label="Next" onClick={getEmail} />
           </div>
         </AuthLayout>
       )}
