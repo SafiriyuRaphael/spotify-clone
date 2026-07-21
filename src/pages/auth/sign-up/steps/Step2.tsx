@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { authContext } from "../../context";
 
 const Step2 = () => {
@@ -15,6 +15,7 @@ const Step2 = () => {
           onChange={(e) =>
             setRegisterData({ ...registerData, fullName: e.target.value })
           }
+          value={registerData.fullName}
         />
       </div>
 
@@ -40,6 +41,7 @@ const Step2 = () => {
                   dob: { ...registerData.dob, day: e.target.value },
                 })
               }
+              value={registerData.dob.day}
             />
           </div>
 
@@ -79,6 +81,7 @@ const Step2 = () => {
                   dob: { ...registerData.dob, year: e.target.value },
                 })
               }
+              value={registerData.dob.year}
             />
           </div>
         </div>
@@ -96,12 +99,10 @@ const Step2 = () => {
               onChange={(e) =>
                 setRegisterData({
                   ...registerData,
-                  gender: e.target.value as
-                    | "male"
-                    | "female"
-                    | "prefer_not_to_say",
+                  gender: "male",
                 })
               }
+              checked={registerData.gender === "male"}
             />
             <label className="" htmlFor="Male">
               Male
@@ -113,12 +114,10 @@ const Step2 = () => {
               onChange={(e) =>
                 setRegisterData({
                   ...registerData,
-                  gender: e.target.value as
-                    | "male"
-                    | "female"
-                    | "prefer_not_to_say",
+                  gender: "female",
                 })
               }
+              checked={registerData.gender === "female"}
             />
             <label htmlFor="Female">Female</label>
           </div>
@@ -131,12 +130,10 @@ const Step2 = () => {
               onChange={(e) =>
                 setRegisterData({
                   ...registerData,
-                  gender: e.target.value as
-                    | "male"
-                    | "female"
-                    | "prefer_not_to_say",
+                  gender: "prefer_not_to_say",
                 })
               }
+              checked={registerData.gender === "prefer_not_to_say"}
             />
             <label htmlFor="others">Rather not say</label>
           </div>
