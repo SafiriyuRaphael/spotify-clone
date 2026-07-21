@@ -19,8 +19,8 @@ const SignUp = () => {
     { step: 3, label: "Terms and Conditions" },
   ];
 
-  const inputMail = () => {
-    setRegisterData({ ...registerData, email: "green" });
+  const inputMail = (email: string) => {
+    setRegisterData({ ...registerData, email });
   };
 
   const submitMail = () => {
@@ -48,7 +48,7 @@ const SignUp = () => {
               placeholder="name@domain.com"
               className="border py-3 w-80 rounded-bl-xs px-2"
               value={registerData.email}
-              onChange={inputMail}
+              onChange={(e) => inputMail(e.target.value)}
             />
             <Button label="Next" onClick={submitMail} />
           </div>
