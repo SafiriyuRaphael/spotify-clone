@@ -3,6 +3,8 @@ import Button from "./Button";
 import { FaSpotify } from "react-icons/fa";
 import { useContext } from "react";
 import { authContext } from "../pages/auth/context";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 
 type SignUpStepsProps = {
   children: React.ReactNode;
@@ -12,6 +14,26 @@ type SignUpStepsProps = {
 
 const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
   const { wrongPass, registerData } = useContext(authContext);
+  const navigate = useNavigate();
+
+  const signUpUser = () => {
+    if (
+      !registerData.dob ||
+      !registerData.fullName ||
+      !registerData.gender ||
+      !registerData.password
+    ) {
+      toast("Incomplete data", { type: "error" });
+      return;
+    } else {
+      localStorage.setItem("auth", JSON.stringify(registerData));
+
+      toast("Account created successfully. Please log in to continue.", {
+        type: "success",
+      });
+      navigate("/auth/login");
+    }
+  };
 
   const NextStep = () => {
     if (steps.step === 1) {
@@ -22,18 +44,14 @@ const SignUpSteps = ({ children, steps, setStep }: SignUpStepsProps) => {
       }
     }
     if (steps.step === 2) {
-      if (
-        !registerData.fullName ||
-        Object.values(registerData.dob).includes("") ||
-        !registerData.gender
-      ) {
+      if (!registerData.fullName || !registerData.gender) {
         return;
       } else {
         setStep(3);
       }
     }
-    if (steps.step > 1) {
-      setStep(steps.step + 1);
+    if (steps.step === 3) {
+      signUpUser();
     }
   };
   if (!registerData.fullName || registerData.gender) {
