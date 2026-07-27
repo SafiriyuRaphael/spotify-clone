@@ -23,8 +23,7 @@ const DashboardLayout = () => {
               className="w-full"
             />
           </div>
-          <div className="flex items-center gap-2.5">
-            <span>|</span>
+          <div className="flex items-center gap-2.5 border-l border-l-gray-500 pl-1">
             <CgEnter size={28} />
           </div>
         </div>
@@ -45,7 +44,7 @@ const DashboardLayout = () => {
 
       <div className="flex">
         <section className="w-[30%] bg-[#121212] rounded-lg flex flex-col  p-4 ">
-          <div className="flex justify-between  items-center">
+          <div className="flex justify-between  items-center pb-5">
             <h2 className="text-white font-bold text-lg">Your Library</h2>
 
             <button className=" flex items-center text-white font-bold text-lg">
@@ -53,7 +52,7 @@ const DashboardLayout = () => {
               Create
             </button>
           </div>
-          <div className="space-y-4 mt-4">
+          <div className="space-y-4 mt-4 h-[40vh] overflow-y-scroll hide-scroll">
             <div className=" bg-[#242424] rounded-lg p-4 space-y-3 ">
               <h3 className="font-semibold text-white">
                 Create yourfirst playlist
