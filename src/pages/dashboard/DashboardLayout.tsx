@@ -100,9 +100,9 @@ const DashboardLayout = () => {
             </button>
           </div>
         </section>
-        <div className="fex-1">
+        <section className="w-[69%]">
           <Outlet />
-        </div>
+        </section>
       </div>
     </div>
   );
