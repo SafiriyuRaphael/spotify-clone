@@ -9,7 +9,7 @@ import { LuGlobe } from "react-icons/lu";
 const DashboardLayout = () => {
   return (
     <div className="bg-black">
-      <header className="py-4  text-white flex gap-3.5 items-center justify-between px-3.5">
+      <header className="py-4  text-white flex gap-3.5 items-center justify-between px-3.5 sticky top-0 z-50 bg-black">
         <BsSpotify size={32} />
         <div className="bg-[#333333] p-2 rounded-full">
           <BiHome size={28} />
@@ -103,7 +103,7 @@ const DashboardLayout = () => {
           <Outlet />
         </div>
       </div>
-    </div> 
+    </div>
   );
 };
 
