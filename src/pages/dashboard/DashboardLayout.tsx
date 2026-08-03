@@ -55,7 +55,7 @@ const DashboardLayout = () => {
           <div className="space-y-4 mt-4 h-[40vh] overflow-y-scroll hide-scroll">
             <div className=" bg-[#242424] rounded-lg p-4 space-y-3 ">
               <h3 className="font-semibold text-white">
-                Create yourfirst playlist
+                Create your first playlist
               </h3>
 
               <p className="text-gray-300  text-sm font-bold ">
@@ -99,11 +99,11 @@ const DashboardLayout = () => {
             </button>
           </div>
         </section>
-        <div className="fex-1">
+        <div className="flex-1 w-[50vw]">
           <Outlet />
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
