@@ -76,7 +76,7 @@ const DashboardLayout = () => {
             </div>
           </div>
           <div className="mt-6 text-xs text-gray-400 flex flex-wrap gap-3 p-4   ">
-            <span className="hover:text-white cursor-pointer">Legal</span>
+            <span className="hover:text-white cursor-pointer"> Legal</span>
             <span className="hover:text-white cursor-pointer">
               Safety & Privacy Center
             </span>
