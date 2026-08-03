@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { authContext } from "../../context";
-
+ 
 const Step3 = () => {
   const { registerData, setRegisterData } = useContext(authContext);
   return (
