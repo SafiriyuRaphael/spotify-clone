@@ -1,34 +1,44 @@
 import MusicRow from "./components/MusicRow";
+import { useEffect } from "react";
+import { getSpotifyToken, fetchSongs } from "./api";
 
 const Homepage = () => {
+  useEffect(() => {
+    fetchSongs();
+  }, []);
+
+  // const fetchSongs = async () => {
+  //   const response = await axios.get("");
+  // };
+
   const songs = [
     {
-      img: "public/Akon ft.png",
+      img: "/Akon ft.png",
       title: "Gheto Gheto",
       artist: "Akon ft Ne-Yo",
       isExplicit: true,
     },
     {
-      img: "public/Celine Dion.png",
+      img: "/Celine Dion.png",
       title: "Goodbye",
       artist: "Celine Dion",
       isExplicit: true,
     },
 
     {
-      img: "public/Justin Bieber.png",
+      img: "/Justin Bieber.png",
       title: "Somebody to love",
       artist: "Justin Bieber ft Drake",
       isExplicit: true,
     },
     {
-      img: "public/Michael Jackson.png",
+      img: "/Michael Jackson.png",
       title: "Earthsong",
       artist: "Michael Jackson",
       isExplicit: true,
     },
     {
-      img: "public/Michael Jay.png",
+      img: "/Michael Jay.png",
       title: "Heal the world",
       artist: "Michael Jackson",
       isExplicit: true,
@@ -37,26 +47,27 @@ const Homepage = () => {
 
   const popularArtists = [
     {
-      img: "public/Justin B.png",
+      img: "/Justin B.png",
       artist: "Justin Bieber",
     },
     {
-      img: "public/M Jay.png",
+      img: "/M Jay.png",
       artist: "Michael Jackson",
     },
     {
-      img: "public/Celine.png",
+      img: "/Celine.png",
       artist: "Celine Dion",
     },
     {
-      img: "public/Akon tour.png",
+      img: "/Akon tour.png",
       artist: "Akon",
     },
     {
-      img: "public/Shakira.png",
+      img: "/Shakira.png",
       artist: "Shakira",
     },
   ];
+
   return (
     <div className="bg-[#121212] mx-3 p-2 rounded-[10px] max-h-screen overflow-y-scroll hide-scroll">
       <div className="flex justify-between text-white px-5">
