@@ -15,19 +15,21 @@ export const getSpotifyToken = async () => {
     client_secret,
     grant_type: "client_credentials",
   });
-
   const data = (await response).data;
   return data.access_token;
 };
 
 
 
-export const fetchSongs = async () => {
+export const fetchSongs = async (type: string) => {
   const api = axios.create({
     baseURL: "https://api.spotify.com/v1", headers: {
       Authorization: `Bearer ${await getSpotifyToken()}`,
-    }
+    },
+    params: { q: "year:2026", type, limit: 10, market: "NG", },
   });
-  const response = await api.get("/artists/4Z8W4fKeB5YxbusRsdQVPb");
-  console.log(response);
+  const response = await api.get("/search");
+  console.log(response.data);
+
+  return response.data;
 }

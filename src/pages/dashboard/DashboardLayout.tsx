@@ -20,7 +20,7 @@ const DashboardLayout = () => {
             <input
               type="text"
               placeholder="What do you want to play"
-              className="w-full"
+              className="w-full focus:outline-none"
             />
           </div>
           <div className="flex items-center gap-2.5 border-l border-l-gray-500 pl-1">
@@ -43,7 +43,7 @@ const DashboardLayout = () => {
       </header>
 
       <div className="flex">
-        <section className="w-[30%] bg-[#121212] rounded-lg flex flex-col  p-4 ">
+        <section className="flex-1 bg-[#121212] rounded-lg flex flex-col  p-4 ">
           <div className="flex justify-between  items-center pb-5">
             <h2 className="text-white font-bold text-lg">Your Library</h2>
 
@@ -99,7 +99,7 @@ const DashboardLayout = () => {
             </button>
           </div>
         </section>
-        <div className="flex-1 w-[50vw]">
+        <div className="w-[70vw] overflow-y-visible shrink-0">
           <Outlet />
         </div>
       </div>

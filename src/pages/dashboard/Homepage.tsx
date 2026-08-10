@@ -1,49 +1,27 @@
 import MusicRow from "./components/MusicRow";
 import { useEffect } from "react";
 import { getSpotifyToken, fetchSongs } from "./api";
+import { useQuery } from "@tanstack/react-query";
+import ArtistRow from "./components/ArtistRow";
 
 const Homepage = () => {
-  useEffect(() => {
-    fetchSongs();
-  }, []);
+  // useEffect(() => {
+  //   fetchSongs();
+  // }, []);
+
+  const albums = useQuery({
+    queryKey: ["albums"],
+    queryFn: () => fetchSongs("track"),
+  });
+
+  const artists = useQuery({
+    queryKey: ["artists"],
+    queryFn: () => fetchSongs("artist"),
+  });
 
   // const fetchSongs = async () => {
   //   const response = await axios.get("");
   // };
-
-  const songs = [
-    {
-      img: "/Akon ft.png",
-      title: "Gheto Gheto",
-      artist: "Akon ft Ne-Yo",
-      isExplicit: true,
-    },
-    {
-      img: "/Celine Dion.png",
-      title: "Goodbye",
-      artist: "Celine Dion",
-      isExplicit: true,
-    },
-
-    {
-      img: "/Justin Bieber.png",
-      title: "Somebody to love",
-      artist: "Justin Bieber ft Drake",
-      isExplicit: true,
-    },
-    {
-      img: "/Michael Jackson.png",
-      title: "Earthsong",
-      artist: "Michael Jackson",
-      isExplicit: true,
-    },
-    {
-      img: "/Michael Jay.png",
-      title: "Heal the world",
-      artist: "Michael Jackson",
-      isExplicit: true,
-    },
-  ];
 
   const popularArtists = [
     {
@@ -75,7 +53,7 @@ const Homepage = () => {
         <button>show all</button>
       </div>
       <section className="flex  ">
-        {songs.map((song, index) => (
+        {albums.data?.tracks.items.map((song: any, index: number) => (
           <MusicRow key={index} {...song} />
         ))}
       </section>
@@ -84,10 +62,12 @@ const Homepage = () => {
         <h1 className="text-[25px] text-bold">Popular artists</h1>
         <button>show all</button>
       </div>
-      <section className="flex">
-        {popularArtists.map((artist, index) => (
-          <MusicRow key={index} {...artist} variant="circle" />
-        ))}
+      <section className="flex max-w-screen overflow-x-scroll hide-scroll">
+        {artists.data?.artists.items
+          .slice(0, 5)
+          .map((artist: any, index: number) => (
+            <ArtistRow key={index} {...artist} variant="circle" />
+          ))}
       </section>
 
       <div className="flex justify-between text-white px-5 mt-10">
@@ -95,7 +75,7 @@ const Homepage = () => {
         <button>show all</button>
       </div>
       <section className="flex">
-        {popularArtists.map((artist, index) => (
+        {popularArtists.map((artist: any, index: number) => (
           <MusicRow key={index} {...artist} variant="circle" />
         ))}
       </section>

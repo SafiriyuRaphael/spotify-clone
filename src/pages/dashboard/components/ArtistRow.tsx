@@ -1,29 +1,30 @@
 import React from "react";
 
-const MusicRow = ({
-  album,
-
+const ArtistRow = ({
+  name,
+  images,
   isExplicit,
   variant = "square",
 }: {
-  album: any;
+  name?: string;
+  images: any[];
   isExplicit?: boolean;
   variant?: "circle" | "square";
 }) => {
   return (
-    <div className="px-5 mt-3 text-white ">
+    <div className="px-5 mt-3 text-center text-white ">
       <img
-        className={`size-[10vw]  cursor-pointer hover:scale-105 duration-200 ${variant === "circle" ? "rounded-[50%]" : "rounded-[5px]"}`}
-        src={album?.images[0]?.url}
+        className={`size-36  cursor-pointer hover:scale-105 duration-200 ${variant === "circle" ? "rounded-[50%]" : "rounded-[5px]"}`}
+        src={images[0]?.url}
         alt=""
       />
-      <h2>{album?.name}</h2>
+      <h2>{name}</h2>
       <p className="text-[12px] cursor-pointer hover:scale-105 duration-200">
         {isExplicit && <span className="bg-[azure] px-1 text-black ">E</span>}{" "}
-        {album?.artists[0]?.name}
+        artist
       </p>
     </div>
   );
 };
 
-export default MusicRow;
+export default ArtistRow;
