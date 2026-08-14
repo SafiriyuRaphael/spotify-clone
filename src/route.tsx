@@ -3,7 +3,7 @@ import Login from "./pages/auth/log-in";
 import SignUp from "./pages/auth/sign-up";
 import Homepage from "./pages/dashboard/Homepage";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
-import Music from "./pages/dashboard/Music";
+import Music from "./pages/music";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { Component: Homepage, index: true },
-      { Component: Music, path: "music" },
+      { Component: Music, path: ":musicId" },
     ],
   },
   {
